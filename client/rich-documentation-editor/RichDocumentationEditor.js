@@ -7,29 +7,29 @@ export default function RichDocumentationEditor(eventBus) {
     target.setAttribute('placeholder', 'Click to edit');
 
     // Check if the focused element is inside the properties panel
-    // if (target.closest('.bio-properties-panel')) {
-    if (
-      target.id === 'bio-properties-panel-documentation' ||
-      target.id === 'bio-properties-panel-processDocumentation'
-    ) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (target.closest('.bio-properties-panel')) {
+      if (
+        target.id === 'bio-properties-panel-documentation' ||
+        target.id === 'bio-properties-panel-processDocumentation'
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
 
-      // Prevent default editing
-      target.blur();
+        // Prevent default editing
+        target.blur();
 
-      // Only open one modal at a time
-      if (document.getElementById('custom-richtext-modal')) return;
+        // Only open one modal at a time
+        if (document.getElementById('custom-richtext-modal')) return;
 
-      // Create modal
-      const modal = document.createElement('div');
-      modal.id = 'custom-richtext-modal';
-      modal.style = `
+        // Create modal
+        const modal = document.createElement('div');
+        modal.id = 'custom-richtext-modal';
+        modal.style = `
           position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; z-index: 9999; background: rgba(0,0,0,0.5);
         `;
 
-      // Modal content with Quill container
-      modal.innerHTML = `
+        // Modal content with Quill container
+        modal.innerHTML = `
         <div style="background: #fff; padding: 24px; border-radius: 8px; min-width: 500px;">
             <h3>Edit Documentation</h3>
             <div id="quill-editor" style="height: 200px;">${
@@ -43,33 +43,36 @@ export default function RichDocumentationEditor(eventBus) {
         </div>
         `;
 
-      document.body.appendChild(modal);
+        document.body.appendChild(modal);
 
-      // Initialize Quill
-      const quill = new Quill('#quill-editor', {
-        theme: 'snow',
-      });
+        // Initialize Quill
+        const quill = new Quill('#quill-editor', {
+          theme: 'snow',
+        });
 
-      // Set initial content (if any)
-      if (target.value) {
-        quill.root.innerHTML = target.value;
+        // Set initial content (if any)
+        if (target.value) {
+          quill.root.innerHTML = target.value;
+        }
+
+        // Handle save/cancel/clear
+        modal.querySelector('#richtext-cancel').onclick = () => {
+          document.body.removeChild(modal);
+        };
+        modal.querySelector('#richtext-save').onclick = () => {
+          const newValue = quill.root.innerHTML;
+          target.value = newValue.replace('<p><br></p>', '');
+          target.setAttribute(
+            'data-value',
+            newValue.replace('<p><br></p>', '')
+          );
+          target.dispatchEvent(new Event('input', { bubbles: true }));
+          document.body.removeChild(modal);
+        };
+        modal.querySelector('#richtext-clear').onclick = () => {
+          quill.setText('');
+        };
       }
-
-      // Handle save/cancel/clear
-      modal.querySelector('#richtext-cancel').onclick = () => {
-        document.body.removeChild(modal);
-      };
-      modal.querySelector('#richtext-save').onclick = () => {
-        const newValue = quill.root.innerHTML;
-        target.value = newValue.replace('<p><br></p>', '');
-        target.setAttribute('data-value', newValue.replace('<p><br></p>', ''));
-        target.dispatchEvent(new Event('input', { bubbles: true }));
-        document.body.removeChild(modal);
-      };
-      modal.querySelector('#richtext-clear').onclick = () => {
-        quill.setText('');
-      };
-      // }
     }
   });
 }

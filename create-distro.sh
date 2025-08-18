@@ -2,6 +2,7 @@
 
 DISTRO_NAME=$(basename "$(pwd)")
 DISTRO_VERSION=$(jq -r .version package.json)
+rm $DISTRO_NAME.zip
 npm pack
 tar xvf $DISTRO_NAME-$DISTRO_VERSION.tgz
 rm $DISTRO_NAME-$DISTRO_VERSION.tgz
