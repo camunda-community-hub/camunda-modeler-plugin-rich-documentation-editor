@@ -11,12 +11,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [ '.js', '.jsx' ]
   },
   devtool: 'cheap-module-source-map'
 };

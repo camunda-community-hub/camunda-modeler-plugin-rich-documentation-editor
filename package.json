@@ -7,6 +7,7 @@
     "all": "run-s bundle",
     "bundle": "webpack",
     "dev": "webpack -w",
+    "distro": "./create-distro.sh",
     "prepublishOnly": "run-s bundle"
   },
   "repository": {
@@ -31,6 +32,7 @@
   },
   "files": [
     "dist",
+    "style",
     "index.js"
   ],
   "dependencies": {

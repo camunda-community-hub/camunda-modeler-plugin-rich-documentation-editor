@@ -1,0 +1,7 @@
+#bio-properties-panel-documentation,
+#bio-properties-panel-processDocumentation {
+  resize: none;
+  max-height: 25px;
+  background: #f0f0f0;
+  content: 'Click to edit';
+}
