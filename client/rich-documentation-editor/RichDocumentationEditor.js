@@ -4,8 +4,6 @@ import 'quill/dist/quill.snow.css';
 export default function RichDocumentationEditor(eventBus) {
   document.addEventListener('focusin', function (event) {
     const target = event.target;
-    target.setAttribute('placeholder', 'Click to edit');
-
     // Check if the focused element is inside the properties panel
     if (target.closest('.bio-properties-panel')) {
       if (
