@@ -1,7 +1,7 @@
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
-export default function RichDocumentationEditor(eventBus) {
+export default function RichDocumentationEditor() {
   document.addEventListener('focusin', function (event) {
     const target = event.target;
     // Check if the focused element is inside the properties panel
@@ -15,6 +15,7 @@ export default function RichDocumentationEditor(eventBus) {
 
         // Prevent default editing
         target.blur();
+        target.setAttribute('placeholder', 'Click to edit.')
 
         // Only open one modal at a time
         if (document.getElementById('custom-richtext-modal')) return;
@@ -74,5 +75,3 @@ export default function RichDocumentationEditor(eventBus) {
     }
   });
 }
-
-RichDocumentationEditor.$inject = ['eventBus'];
