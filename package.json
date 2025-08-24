@@ -1,6 +1,6 @@
 {
   "name": "camunda-modeler-plugin-rich-documentation-editor",
-  "version": "3.1.0",
+  "version": "0.1.0",
   "description": "A plugin for the Camunda Modeler that adds a rich text editor for element documentation.",
   "main": "index.js",
   "scripts": {
