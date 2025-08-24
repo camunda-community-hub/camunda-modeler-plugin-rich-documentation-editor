@@ -56,7 +56,7 @@ Prepares the plugin for distribution by generating production assets into the di
 ```shell
 npm run distro
 ```
-Creates camunda-modeler-plugin-rich-documentation-editor.zip in the project root. Unzip into your Camunda Modeler plugins directory as described above.
+Creates the `camunda-modeler-plugin-rich-documentation-editor.zip` in the project root. Unzip into your Camunda Modeler plugins directory as described above.
 
 ## Troubleshooting
 - Plugin not loading: Verify the folder structure under resources/plugins does not contain an extra nested directory level after unzipping.
