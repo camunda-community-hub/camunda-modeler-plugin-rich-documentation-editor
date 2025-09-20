@@ -1,5 +1,8 @@
 #bio-properties-panel-documentation,
-#bio-properties-panel-processDocumentation {
+#bio-properties-panel-processDocumentation,
+#bio-properties-panel-description,
+#bio-properties-panel-question,
+#bio-properties-panel-allowedAnswers {
   resize: none;
   max-height: 25px;
   background: #f0f0f0;
