@@ -8,7 +8,10 @@ export default function RichDocumentationEditor() {
     if (target.closest('.bio-properties-panel')) {
       if (
         target.id === 'bio-properties-panel-documentation' ||
-        target.id === 'bio-properties-panel-processDocumentation'
+        target.id === 'bio-properties-panel-processDocumentation' ||
+        target.id === 'bio-properties-panel-description' ||
+        target.id === 'bio-properties-panel-question' ||
+        target.id === 'bio-properties-panel-allowedAnswers'
       ) {
         event.preventDefault();
         event.stopPropagation();
